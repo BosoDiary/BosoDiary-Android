@@ -36,7 +36,7 @@ fun Greeting(name: String) {
 
 @Preview(showBackground = true)
 @Composable
-fun DefaultPriew() {
+fun DefaultPreview() {
     SecretDiaryTheme {
         Greeting("Android")
     }
