@@ -51,15 +51,15 @@ android {
 
 dependencies {
 
-    implementation (Dependency.AndroidX.CORE_KTX)
-    implementation (Dependency.AndroidX.Compose.UI)
-    implementation (Dependency.AndroidX.Compose.MATERIAL)
-    implementation (Dependency.AndroidX.Compose.UI_TOOLING_PREVIEW)
-    implementation (Dependency.AndroidX.Lifecycle.LIFECYCLE_RUNTIME_KTX)
-    implementation (Dependency.AndroidX.Activity.ACTIVITY_COMPOSE)
-    testImplementation (Dependency.AndroidX.Test.JUNIT)
-    androidTestImplementation (Dependency.AndroidX.AndroidTest.JUNIT)
-    androidTestImplementation (Dependency.AndroidX.AndroidTest.ESPRESSO)
-    androidTestImplementation (Dependency.AndroidX.AndroidTest.COMPOSE_UI_TEST)
-    debugImplementation (Dependency.AndroidX.Debug.COMPOSE_UI)
+    implementation(Dependency.AndroidX.CORE_KTX)
+    implementation(Dependency.AndroidX.Compose.UI)
+    implementation(Dependency.AndroidX.Compose.MATERIAL)
+    implementation(Dependency.AndroidX.Compose.UI_TOOLING_PREVIEW)
+    implementation(Dependency.AndroidX.Lifecycle.LIFECYCLE_RUNTIME_KTX)
+    implementation(Dependency.AndroidX.Activity.ACTIVITY_COMPOSE)
+    testImplementation(Dependency.AndroidX.Test.JUNIT)
+    androidTestImplementation(Dependency.AndroidX.AndroidTest.JUNIT)
+    androidTestImplementation(Dependency.AndroidX.AndroidTest.ESPRESSO)
+    androidTestImplementation(Dependency.AndroidX.AndroidTest.COMPOSE_UI_TEST)
+    debugImplementation(Dependency.AndroidX.Debug.COMPOSE_UI)
 }
