@@ -13,4 +13,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "SecretDiary"
-include ':app'
+include(":app")
