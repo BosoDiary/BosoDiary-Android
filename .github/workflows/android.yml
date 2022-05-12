@@ -36,8 +36,7 @@ jobs:
  
 
 
-      - name: Check ktlint format
-        run: ./gradlew ktlintCheck
+    
 
       - name: Run detekt
         run: ./gradlew detekt
