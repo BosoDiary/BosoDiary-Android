@@ -1,7 +1,6 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    //test
 }
 
 android {
@@ -63,4 +62,26 @@ dependencies {
     androidTestImplementation(Dependency.AndroidX.AndroidTest.ESPRESSO)
     androidTestImplementation(Dependency.AndroidX.AndroidTest.COMPOSE_UI_TEST)
     debugImplementation(Dependency.AndroidX.Debug.COMPOSE_UI)
+
+    // ViewModel
+    implementation(Dependency.AndroidX.Lifecycle.VIEWMODEL)
+    // LiveData
+    implementation(Dependency.AndroidX.Lifecycle.LIVEDATA)
+
+    // Saved state module for ViewModel
+    implementation(Dependency.AndroidX.Lifecycle.VIEWMODEL_SAVEDSTATE)
+
+    // Annotation processor
+    implementation(Dependency.AndroidX.Lifecycle.LIFECYCLE_COMMON_JAVA8)
+
+    // viewModelScope
+    implementation(Dependency.AndroidX.Lifecycle.VIEWMODEL_SCOPE)
+    // lifecycleScope
+    implementation(Dependency.AndroidX.Lifecycle.LIFECYCLE_SCOPE)
+    // livedata builder
+    implementation(Dependency.AndroidX.Lifecycle.LIVEDATA_BUILDER)
+
+    // ViewModel 가져올 때 by viewModels() 사용 위해 필요
+    implementation(Dependency.AndroidX.Activity.ACTIVITY_KTX)
+    implementation(Dependency.AndroidX.Fragment.FRAGMENT_KTX)
 }
