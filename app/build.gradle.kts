@@ -84,4 +84,7 @@ dependencies {
     // ViewModel 가져올 때 by viewModels() 사용 위해 필요
     implementation(Dependency.AndroidX.Activity.ACTIVITY_KTX)
     implementation(Dependency.AndroidX.Fragment.FRAGMENT_KTX)
+
+    // navigation
+    implementation(Dependency.AndroidX.Navigation.COMPOSE_NAVIGATION)
 }
