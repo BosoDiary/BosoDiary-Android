@@ -1,10 +1,8 @@
-package com.example.secretdiary
+package com.example.secretdiary.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.navigation.compose.rememberNavController
-import com.example.secretdiary.navigation.SetupNavGraph
 import com.example.secretdiary.ui.theme.SecretDiaryTheme
 
 class MainActivity : ComponentActivity() {
@@ -12,8 +10,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             SecretDiaryTheme {
-                val navController = rememberNavController()
-                SetupNavGraph(navController)
+               BosoDiaryApp()
             }
         }
     }
