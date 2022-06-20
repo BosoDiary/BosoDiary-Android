@@ -50,6 +50,7 @@ fun AnimationSplashScreen(navController: NavHostController) {
         delay(3000)
         navController.popBackStack()
         navController.navigate(Screen.Login.route)
+
     }
     SplashScreenContent()
 
