@@ -56,10 +56,12 @@ fun AnimationSplashScreen(navController: NavHostController) {
 
     LaunchedEffect(key1 = true) {
         delay(3000)
-
-        // TODO: 로그인이 되어있을 시 main 화면으로 아닐 시 login 화면으로 이동 
+        navController.popBackStack()
+        // navController.navigate(Screen.Login.route)
+        // TODO: 로그인이 되어있을 시 main 화면으로 아닐 시 login 화면으로 이동
     }
     SplashScreenContent()
+
 }
 
 
