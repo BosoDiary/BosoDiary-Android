@@ -26,24 +26,25 @@ fun GoogleLoginButton(
     isLoading: Boolean = false,
     onClick: () -> Unit
 ) {
-    var onClickState = remember { false }
 
-    Box(
+     Box(
         modifier = Modifier
             .padding(30.dp)
             .fillMaxWidth()
             .background(loginBtnColor)
             .height(50.dp)
-            .clickable {
-                onClick()
-            }
+            .clickable(
+                enabled = !isLoading,
+                onClick = onClick
+
+            ),
     ) {
 
 
         Row {
             GoogleImageView()
             Text(
-                text = if (!isLoading) "LOG IN WITH GOOGLE " else "...isLoading",
+                text = if (isLoading) "...isLoading " else "LOG IN WITH GOOGLE",
                 color = Color.White,
                 fontSize = 14.sp,
                 fontWeight = FontWeight.ExtraBold,
@@ -52,6 +53,7 @@ fun GoogleLoginButton(
                     .fillMaxWidth(),
                 textAlign = TextAlign.Center
             )
+
         }
 
     }
