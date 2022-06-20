@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.secretdiary.R
 import com.example.secretdiary.ui.theme.mySoulFont
+import com.example.secretdiary.util.Screen
 import kotlinx.coroutines.delay
 
 
@@ -57,7 +58,7 @@ fun AnimationSplashScreen(navController: NavHostController) {
     LaunchedEffect(key1 = true) {
         delay(3000)
         navController.popBackStack()
-        // navController.navigate(Screen.Login.route)
+        navController.navigate(Screen.Login.route)
         // TODO: 로그인이 되어있을 시 main 화면으로 아닐 시 login 화면으로 이동
     }
     SplashScreenContent()
