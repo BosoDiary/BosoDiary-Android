@@ -1,6 +1,10 @@
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.gms.google-services")
+    kotlin("kapt")
 }
 
 android {
@@ -70,6 +74,12 @@ dependencies {
 
     // Saved state module for ViewModel
     implementation(Dependency.AndroidX.Lifecycle.VIEWMODEL_SAVEDSTATE)
+    implementation(("com.google.firebase:firebase-analytics"))
+    implementation(platform("com.google.firebase:firebase-bom:30.1.0"))
+    implementation("com.google.firebase:firebase-common-ktx:20.1.1")
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.android.gms:play-services-auth:20.1.0")
+
 
     // Annotation processor
     implementation(Dependency.AndroidX.Lifecycle.LIFECYCLE_COMMON_JAVA8)
@@ -87,4 +97,6 @@ dependencies {
 
     // navigation
     implementation(Dependency.AndroidX.Navigation.COMPOSE_NAVIGATION)
+
+    implementation(Dependency.AndroidX.Jetpack.Hilt)
 }

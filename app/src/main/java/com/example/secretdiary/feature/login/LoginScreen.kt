@@ -1,29 +1,26 @@
 package com.example.secretdiary.feature.login
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import android.content.Context
+import android.util.Log
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Icon
-import androidx.compose.material.Surface
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.secretdiary.R
-import com.example.secretdiary.ui.theme.loginBtnColor
-import com.example.secretdiary.ui.theme.mySoulFont
+import com.example.secretdiary.feature.AppTitle
+import com.example.secretdiary.util.toast
+import com.google.android.gms.common.api.ApiException
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 
 @Composable
 fun LoginScreen(navController: NavController) {
@@ -35,90 +32,108 @@ fun LoginScreen(navController: NavController) {
         modifier = Modifier.fillMaxSize()
 
     ) {
-        LoginTitle()
-        Spacer(modifier = Modifier.padding(70.dp))
-        GoogleLoginButton(
-            onclick = {}
-        )
-    }
-}
+        AppTitle()
+        Spacer(modifier = Modifier.padding(30.dp))
 
-
-@Composable
-fun LoginTitle() {
-
-
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentHeight(align = Alignment.CenterVertically)
-            .padding(start = 48.dp, end = 48.dp),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = stringResource(id = R.string.app_name),
-            fontSize = 64.sp,
-            fontFamily = mySoulFont,
-
-            )
+        Login(navController)
     }
 }
 
 @Composable
-fun GoogleLoginButton(onclick: () -> Unit) {
+fun Login(
+    navController: NavController,
+) {
+    val coroutineScope = rememberCoroutineScope()
+    var text by remember { mutableStateOf<String?>(null) }
+//    val user by remember(authViewModel) { authViewModel.user }.collectAsState()
+    val context = LocalContext.current
 
-    Box(
-        modifier = Modifier
-            .padding(30.dp)
-            .fillMaxWidth()
-            .background(loginBtnColor)
-            .height(50.dp)
-            .clickable { onclick() }
-    ) {
+    val signInRequestCode = 1
 
+    val authResultLauncher =
+        rememberLauncherForActivityResult(contract = AuthResultContract()) { task ->
 
-        Row {
-            GoogleImageView()
-            Text(
-                text = "LOG IN WITH GOOGLE",
-                color = Color.White,
-                fontSize = 14.sp,
-                fontWeight = FontWeight.ExtraBold,
-                modifier = Modifier
-                    .align(Alignment.CenterVertically)
-                    .fillMaxWidth(),
-                textAlign = TextAlign.Center
-            )
+            try {
+                val account = task?.getResult(ApiException::class.java)
+                if (account == null) {
+                    text = "Google sign in failed"
+                    Log.d("TAG", "Login: ${account}")
+                } else {
+                    firebaseAuthWithGoogle(
+                        context = context,
+                        account.idToken.toString(),
+                        navController = navController
+                    )
+
+                }
+            } catch (e: ApiException) {
+                Log.d("TAG", "Login catch: ${e.message}")
+                text = "Google sign in failed"
+            }
         }
 
-    }
+    AuthView(
+        errorText = text,
+        onClick = {
+            text = null
+            authResultLauncher.launch(signInRequestCode)
+        }
+    )
+
 
 }
 
 @Composable
-fun GoogleImageView() {
-    Surface(
-        modifier = Modifier
-            .padding(7.dp)
-            .clip(RoundedCornerShape(8.dp))
-            .size(36.dp)
-            .background(Color.White)
+fun AuthView(
+    errorText: String?,
+    onClick: () -> Unit
+) {
+    var isLoading: Boolean by remember { mutableStateOf(false) }
 
-    ) {
-        Icon(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(7.dp),
-            painter = painterResource(id = R.drawable.google_img),
-            contentDescription = null,
-        )
+
+    GoogleLoginButton(
+        isLoading = isLoading,
+        onClick = {
+            isLoading = true
+            onClick()
+        }
+    )
+
+    errorText?.let {
+        isLoading = false
+        Spacer(modifier = Modifier.height(30.dp))
+        Text(text = it)
     }
 }
+
+
+private fun firebaseAuthWithGoogle(
+    context: Context,
+    idToken: String,
+    navController: NavController
+) {
+    val auth = FirebaseAuth.getInstance()
+
+    val credential = GoogleAuthProvider.getCredential(idToken, null)
+    auth.signInWithCredential(credential)
+        .addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                // Sign in success, update UI with the signed-in user's information
+                context.toast("성공")
+
+            } else {
+                // If sign in fails, display a message to the user.
+                Log.w("TAG", "signInWithCredential:failure", task.exception)
+                context.toast("실패")
+            }
+        }
+}
+
 
 @Preview
 @Composable
 fun GoogleLoginButtonPreview() {
-    GoogleLoginButton {}
+    GoogleLoginButton(false, {})
 }
 
 @Preview
