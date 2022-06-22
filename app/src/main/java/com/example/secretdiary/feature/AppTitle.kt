@@ -34,23 +34,10 @@ fun AppTitle() {
             )
     }
 }
+
 @Preview
 @Composable
 fun AppTitlePreView() {
 
-
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentHeight(align = Alignment.CenterVertically)
-            .padding(start = 48.dp, end = 48.dp),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = stringResource(id = R.string.app_name),
-            fontSize = 64.sp,
-            fontFamily = mySoulFont,
-
-            )
-    }
+    AppTitle()
 }
