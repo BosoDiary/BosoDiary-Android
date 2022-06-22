@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">BosoDiary</string>
-    <string name="web_cilent_id">350191478601-5di64rkrevomf9ajbsbcpqi4e148esj2.apps.googleusercontent.com</string>
+    <string name="web_client_id" translatable="false">350191478601-bnk1kc1s6pkqaqrn7rs2upeomvi4sr4s.apps.googleusercontent.com</string>
 </resources>
