@@ -24,6 +24,14 @@ object Dependency {
             const val LIVEDATA_BUILDER = "androidx.lifecycle:lifecycle-livedata-ktx:$VERSION"
         }
 
+        object Jetpack {
+            const val Hilt = "com.google.dagger:hilt-android:${Versions.Jetpack.Hilt}"
+            const val HiltCompiler =
+                "com.google.dagger:hilt-android-compiler:${Versions.Jetpack.Hilt}"
+
+        }
+
+
         object Activity {
             const val ACTIVITY_COMPOSE = "androidx.activity:activity-compose:1.3.1"
             const val ACTIVITY_KTX = "androidx.activity:activity-ktx:1.4.0"

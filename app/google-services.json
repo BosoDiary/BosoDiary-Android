@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "350191478601",
+    "project_id": "bosodiary",
+    "storage_bucket": "bosodiary.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:350191478601:android:20976e21ef2015decb5c98",
+        "android_client_info": {
+          "package_name": "com.example.secretdiary"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "350191478601-5di64rkrevomf9ajbsbcpqi4e148esj2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.secretdiary",
+            "certificate_hash": "47b0304905cea6d53dd30c5751f3ce776afc3e0b"
+          }
+        },
+        {
+          "client_id": "350191478601-bnk1kc1s6pkqaqrn7rs2upeomvi4sr4s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_te7agdbzhf0c34Wxkx1yC8-irhMyIDY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "350191478601-bnk1kc1s6pkqaqrn7rs2upeomvi4sr4s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
